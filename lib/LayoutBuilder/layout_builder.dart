@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class LayoutuilderWidget extends StatelessWidget {
@@ -8,6 +10,7 @@ class LayoutuilderWidget extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constrains) {
+          log(constrains.maxWidth.toString());
           if (constrains.maxWidth <= 500) {
             return const MobileLayout();
           } else {
