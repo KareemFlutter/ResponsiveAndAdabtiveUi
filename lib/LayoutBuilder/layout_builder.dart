@@ -11,10 +11,54 @@ class LayoutuilderWidget extends StatelessWidget {
           if (constrains.maxWidth <= 500) {
             return const MobileLayout();
           } else {
-            return const Text("another Layout");
+            return const DesktopLayoutWidget();
           }
         },
       ),
+    );
+  }
+}
+
+class DesktopLayoutWidget extends StatefulWidget {
+  const DesktopLayoutWidget({super.key});
+
+  @override
+  State<DesktopLayoutWidget> createState() => _DesktopLayoutWidgetState();
+}
+
+class _DesktopLayoutWidgetState extends State<DesktopLayoutWidget> {
+  int number = 1;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  number = index + 1;
+                  setState(() {});
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  color: Colors.green,
+                  child: ListTile(
+                    title: Text('${index + 1}'),
+                  ),
+                ),
+              );
+            },
+            itemCount: 10,
+          ),
+        ),
+        Expanded(
+            child: Container(
+          child: Center(
+            child: Text(number.toString()),
+          ),
+        ))
+      ],
     );
   }
 }
@@ -58,6 +102,7 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
         child: Text(
           number.toString(),
